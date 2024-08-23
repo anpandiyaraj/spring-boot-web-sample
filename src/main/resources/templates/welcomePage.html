@@ -5,5 +5,22 @@
 <body>
 <h1>Welcome</h1>
 <p th:text="${welcomeMessage}"></p>
+<label for="SQL">SQL:</label><br>
+<textarea id="sqlarea" name="sqlarea" rows="4" cols="50" style="width: 937px; height: 226px;">
+    </textarea>
+<button onclick="myFunction()">Execute</button>
+<br>
+<div></div>
+
 </body>
+<script>
+    function myFunction() {
+   const eventSource = new EventSource('/stream');
+   eventSource.onmessage = function(event) {
+       const newElement = document.createElement("div");
+       newElement.innerHTML = event.data;
+       document.body.appendChild(newElement);
+   };
+    }
+</script>
 </html>
